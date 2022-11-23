@@ -10,6 +10,7 @@ import { ProductService } from './product.service';
 export class ProductComponent implements OnInit {
 
   products: Product[] = [];
+  displayAddModal = false;
 
   constructor(private productService: ProductService) { }
 
@@ -23,6 +24,18 @@ export class ProductComponent implements OnInit {
         this.products = response;
       }
     )
+  }
+
+  showAddModal() {
+    this.displayAddModal = true;
+  }
+
+  hideAddModal(isClosed: boolean) {
+    this.displayAddModal = !isClosed;
+  }
+
+  saveProductToList(newData: any) {
+    this.products.unshift(newData);
   }
 
 }

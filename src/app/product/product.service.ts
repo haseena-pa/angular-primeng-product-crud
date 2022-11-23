@@ -13,4 +13,8 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>('https://fakestoreapi.com/products?sort=desc');
   }
+
+  saveProduct(postData: any) {
+    return this.http.post('https://fakestoreapi.com/products', postData);
+  }
 }

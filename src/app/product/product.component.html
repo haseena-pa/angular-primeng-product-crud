@@ -1,3 +1,7 @@
+<div class="flex justify-content-between">
+  <h2>Products</h2>
+  <p-button label="Add Product" (click)="showAddModal()"></p-button>
+</div>
 <p-table [value]="products" [paginator]="true" [rows]="5">
   <ng-template pTemplate="header">
     <tr>
@@ -16,3 +20,11 @@
     </tr>
   </ng-template>
 </p-table>
+
+<app-add-edit-product
+  [displayAddModal]="displayAddModal"
+  (clickClose)="hideAddModal($event)"
+  (clickAdd)="saveProductToList($event)"
+></app-add-edit-product>
+
+<p-toast position="bottom-right"></p-toast>
