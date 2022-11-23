@@ -10,7 +10,8 @@ import { ProductService } from './product.service';
 export class ProductComponent implements OnInit {
 
   products: Product[] = [];
-  displayAddModal = false;
+  displayAddEditModal = false;
+  selectedProduct: any = null;
 
   constructor(private productService: ProductService) { }
 
@@ -27,15 +28,28 @@ export class ProductComponent implements OnInit {
   }
 
   showAddModal() {
-    this.displayAddModal = true;
+    this.displayAddEditModal = true;
+    this.selectedProduct = null;
   }
 
   hideAddModal(isClosed: boolean) {
-    this.displayAddModal = !isClosed;
+    this.displayAddEditModal = !isClosed;
   }
 
-  saveProductToList(newData: any) {
-    this.products.unshift(newData);
+  saveorUpdateProductList(newData: any) {
+    if (newData.id === this.selectedProduct.id) {
+      const productIndex = this.products.findIndex(data => data.id === newData.id);
+      this.products[productIndex] = newData;
+    } else {
+      this.products.unshift(newData);
+    }
+
+    //this.getProductList();
+  }
+
+  showEditModal(product: Product) {
+    this.displayAddEditModal = true;
+    this.selectedProduct = product;
   }
 
 }
