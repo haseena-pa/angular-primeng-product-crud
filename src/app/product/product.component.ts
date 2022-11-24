@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
   }
 
   saveorUpdateProductList(newData: any) {
-    if (newData.id === this.selectedProduct.id) {
+    if (this.selectedProduct && newData.id === this.selectedProduct.id) {
       const productIndex = this.products.findIndex(data => data.id === newData.id);
       this.products[productIndex] = newData;
     } else {
