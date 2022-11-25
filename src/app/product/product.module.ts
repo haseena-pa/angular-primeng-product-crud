@@ -4,6 +4,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 
 
@@ -21,11 +23,12 @@ import { MessageService } from 'primeng/api';
     TableModule,
     ButtonModule,
     AddEditProductModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   exports: [
     ProductComponent
   ],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class ProductModule { }
