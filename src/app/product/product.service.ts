@@ -10,8 +10,9 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('https://fakestoreapi.com/products?sort=desc');
+  getProducts(category: string): Observable<Product[]> {
+    const categoryUrl = category ? `/category/${category}` : '';
+    return this.http.get<Product[]>(`https://fakestoreapi.com/products${categoryUrl}?sort=desc`);
   }
 
   addEditProduct(postData: any, selectedPdt: any) {
@@ -25,5 +26,9 @@ export class ProductService {
 
   deleteProduct(productId: number) {
     return this.http.delete(`https://fakestoreapi.com/products/${productId}`);
+  }
+
+  getCategories(): Observable<string[]> {
+    return this.http.get<string[]>('https://fakestoreapi.com/products/categories');
   }
 }
